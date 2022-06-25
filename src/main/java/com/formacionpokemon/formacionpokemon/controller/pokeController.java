@@ -18,8 +18,7 @@ public class pokeController {
 	
 	@GetMapping("/")
 	public String getAllData() {
-		System.out.println("Hola Log");
-		return "Hola Mundo!";
+		return service.getData("zapdos");
 	}
 	
 	@GetMapping("data/{name}")
