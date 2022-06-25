@@ -24,10 +24,7 @@ public class pokeController {
 	
 	@GetMapping("data/{name}")
 	public String getAllData(@PathVariable String name) {
-		String uri = "https://pokeapi.co/api/v2/pokemon/" + name;
-		RestTemplate restTemplate = new RestTemplate();
-		String result = restTemplate.getForObject(uri, String.class);
-		return result;
+		return service.getData(name);
 	}
 	
 	@GetMapping("abilities/{name}")
