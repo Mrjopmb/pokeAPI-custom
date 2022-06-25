@@ -23,6 +23,7 @@ public class pokeController {
 	
 	@GetMapping("data/{name}")
 	public String getAllData(@PathVariable String name) {
+		System.out.println(service.getData(name));
 		return service.getData(name);
 	}
 	
