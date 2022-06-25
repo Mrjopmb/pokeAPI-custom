@@ -9,6 +9,7 @@ public class pokeService {
 	
 	public String getData(String name) {
 		String uri = "https://pokeapi.co/api/v2/pokemon/" + name;
+		System.out.println(uri);
 		RestTemplate restTemplate = new RestTemplate();
 		String result = restTemplate.getForObject(uri, String.class);
 		return result;
