@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 
 @RestController
@@ -23,7 +24,10 @@ public class pokeController {
 	
 	@GetMapping("data/{name}")
 	public String getAllData(@PathVariable String name) {
-		return service.getData(name);
+		String uri = "https://pokeapi.co/api/v2/pokemon/" + name;
+		RestTemplate restTemplate = new RestTemplate();
+		String result = restTemplate.getForObject(uri, String.class);
+		return result;
 	}
 	
 	@GetMapping("abilities/{name}")
