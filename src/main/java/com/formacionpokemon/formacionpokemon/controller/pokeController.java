@@ -16,6 +16,11 @@ public class pokeController {
 	@Autowired
 	private pokeService service;
 	
+	@GetMapping("/")
+	public String getAllData() {
+		return "Hola Mundo!";
+	}
+	
 	@GetMapping("data/{name}")
 	public String getAllData(@PathVariable String name) {
 		return service.getData(name);
