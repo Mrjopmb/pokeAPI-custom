@@ -18,12 +18,13 @@ public class pokeController {
 	
 	@GetMapping("/")
 	public String getAllData() {
+		System.out.println("Hola Log");
 		return "Hola Mundo!";
 	}
 	
 	@GetMapping("data/{name}")
 	public String getAllData(@PathVariable String name) {
-		System.out.println(service.getData(name));
+		
 		return service.getData(name);
 	}
 	
