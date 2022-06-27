@@ -24,7 +24,7 @@ public class pokeController {
 	}
 	
 	@GetMapping("data/{name}")
-	public String getPokeData(@PathVariable String name) {
+	public @ResponseBody String getPokeData(@PathVariable String name) {
 		
 		return pokeservice.getData(name).toString();
 	}
