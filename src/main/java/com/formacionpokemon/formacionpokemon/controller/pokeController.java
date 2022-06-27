@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@Controller
+@RestController
 public class pokeController {
 	@Autowired
 	private pokeService pokeservice;
@@ -48,7 +48,7 @@ public class pokeController {
 		return array.toList();
 	}
 	
-	@GetMapping("base-experience/{name}")
+	@GetMapping("/base-experience/{name}")
 	public String getPokeBaseExperience(@PathVariable String name) {
 		String res = pokeservice.getData(name);
 		JSONObject jsonObject = new JSONObject(res);
@@ -69,7 +69,7 @@ public class pokeController {
 		}
 	}
 	
-	@GetMapping("id/{name}")
+	@GetMapping("/id/{name}")
 	public String getPokeId(@PathVariable String name) {
 		String res = pokeservice.getData(name);
 		JSONObject jsonObject = new JSONObject(res);
@@ -77,14 +77,14 @@ public class pokeController {
 		return str;
 	}
 	
-	@RequestMapping("/name/{name}")
+	@GetMapping("/name/{name}")
 	public @ResponseBody JSONObject getPokeName(@PathVariable String name) {
 		String res = pokeservice.getData(name);
 		JSONObject jsonObject = new JSONObject(res);
 		JSONArray array = jsonObject.optJSONArray("forms");
 		String str = "{\"name\": "+ array.optJSONObject(0).optString("name") +"}";
 		JSONObject r = new JSONObject(str);
-		return r;
+		return r.;
 	}
 	
 	@GetMapping("location-area-encounters/{name}")

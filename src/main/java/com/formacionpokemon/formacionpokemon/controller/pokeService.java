@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 public class pokeService {
 	
 	
-	public @ResponseBody String getData(String name) {
+	public String getData(String name) {
 		String uri = "https://pokeapi.co/api/v2/pokemon/" + name;
 		System.out.println(uri);
 		RestTemplate restTemplate = new RestTemplate();
@@ -16,7 +16,7 @@ public class pokeService {
 		return result;
 	}
 	
-	public @ResponseBody String getFromURL(String uri) {
+	public String getFromURL(String uri) {
 		RestTemplate restTemplate = new RestTemplate();
 		String result = restTemplate.getForObject(uri, String.class);
 		return result;
