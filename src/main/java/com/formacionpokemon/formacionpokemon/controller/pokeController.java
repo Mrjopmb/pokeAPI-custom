@@ -9,16 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@Controller
+@RestController
 public class pokeController {
 	@Autowired
 	private pokeService service;
 	
-	@GetMapping("/")
+	@RequestMapping("/")
 	public @ResponseBody String getAllData() {
 		return service.getData("zapdos");
 	}
@@ -29,7 +30,7 @@ public class pokeController {
 		return service.getData(name);
 	}
 	
-	@GetMapping("abilities/{name}")
+	@RequestMapping("abilities/{name}")
 	public List<Object> getPokeAbilities(@PathVariable String name) {
 		String res = service.getData(name);
 		JSONObject jsonObject = new JSONObject(res);
