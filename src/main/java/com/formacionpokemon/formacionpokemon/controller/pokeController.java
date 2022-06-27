@@ -16,7 +16,7 @@ public class pokeController {
 	@Autowired
 	private pokeService service;
 	
-	@GetMapping("")
+	@GetMapping("/")
 	public String getAllData() {
 		return service.getData("zapdos");
 	}
