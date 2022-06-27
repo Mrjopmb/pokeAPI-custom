@@ -78,13 +78,12 @@ public class pokeController {
 	}
 	
 	@GetMapping("/name/{name}")
-	public @ResponseBody JSONObject getPokeName(@PathVariable String name) {
+	public @ResponseBody String getPokeName(@PathVariable String name) {
 		String res = pokeservice.getData(name);
 		JSONObject jsonObject = new JSONObject(res);
 		JSONArray array = jsonObject.optJSONArray("forms");
 		String str = "{\"name\": "+ array.optJSONObject(0).optString("name") +"}";
-		JSONObject r = new JSONObject(str);
-		return r.;
+		return str;
 	}
 	
 	@GetMapping("location-area-encounters/{name}")
