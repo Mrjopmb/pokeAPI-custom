@@ -26,7 +26,7 @@ public class pokeController {
 	@GetMapping("data/{name}")
 	public String getPokeData(@PathVariable String name) {
 		
-		return pokeservice.getData(name);
+		return pokeservice.getData(name).toString();
 	}
 	
 	@RequestMapping("abilities/{name}")
