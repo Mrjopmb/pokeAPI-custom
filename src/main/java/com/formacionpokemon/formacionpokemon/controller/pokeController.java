@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@RestController
+@Controller
 public class pokeController {
 	@Autowired
 	private pokeService pokeservice;
@@ -23,14 +23,14 @@ public class pokeController {
 		return "Hola Mundo!";
 	}
 	
-	@GetMapping("data/{name}")
+	@GetMapping("/data/{name}")
 	public @ResponseBody String getPokeData(@PathVariable String name) {
 		System.out.println("Si entro!!!!!!!");
 		return pokeservice.getData(name).toString();
 	}
 	
-	@RequestMapping("abilities/{name}")
-	public List<Object> getPokeAbilities(@PathVariable String name) {
+	@GetMapping("/abilities/{name}")
+	public @ResponseBody List<Object> getPokeAbilities(@PathVariable String name) {
 		String res = pokeservice.getData(name);
 		JSONObject jsonObject = new JSONObject(res);
 		JSONArray array = jsonObject.optJSONArray("abilities");
