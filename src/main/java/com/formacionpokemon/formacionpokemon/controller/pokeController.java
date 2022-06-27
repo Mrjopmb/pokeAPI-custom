@@ -6,7 +6,6 @@ import java.util.List;
 import org.json.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,29 +16,29 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class pokeController {
 	@Autowired
-	private pokeService service;
+	private pokeService pokeservice;
 	
-	@RequestMapping("/")
+	@GetMapping("/")
 	public @ResponseBody String getAllData() {
-		return service.getData("zapdos");
+		return "Hola Mundo!";
 	}
 	
 	@GetMapping("data/{name}")
-	public String getAllaData(@PathVariable String name) {
+	public String getPokeData(@PathVariable String name) {
 		
-		return service.getData(name);
+		return pokeservice.getData(name);
 	}
 	
 	@RequestMapping("abilities/{name}")
 	public List<Object> getPokeAbilities(@PathVariable String name) {
-		String res = service.getData(name);
+		String res = pokeservice.getData(name);
 		JSONObject jsonObject = new JSONObject(res);
 		JSONArray array = jsonObject.optJSONArray("abilities");
 		for (int i = 0; i < array.length(); i++) {
 			JSONObject jsonO = array.getJSONObject(i);
 			JSONObject jsonI = jsonO.optJSONObject("ability");
 			String uri = jsonI.optString("url");
-			jsonI.put("information", new JSONObject(service.getFromURL(uri)));
+			jsonI.put("information", new JSONObject(pokeservice.getFromURL(uri)));
 			jsonI.remove("url");
 			jsonO.remove("ability");
 			jsonO.put("ability", (Object)jsonI);
@@ -50,7 +49,7 @@ public class pokeController {
 	
 	@GetMapping("base-experience/{name}")
 	public String getPokeBaseExperience(@PathVariable String name) {
-		String res = service.getData(name);
+		String res = pokeservice.getData(name);
 		JSONObject jsonObject = new JSONObject(res);
 		String str = "{\"base-experience\": "+ jsonObject.optInt("base_experience") +"}";
 		return str;
@@ -58,7 +57,7 @@ public class pokeController {
 	
 	@GetMapping("held-items/{name}")
 	public String getPokeHeldItems(@PathVariable String name) {
-		String res = service.getData(name);
+		String res = pokeservice.getData(name);
 		JSONObject jsonObject = new JSONObject(res);
 		try {
 			String str = "{\"held-items\": "+ jsonObject.optJSONArray("held-items").toList() +"}";
@@ -71,7 +70,7 @@ public class pokeController {
 	
 	@GetMapping("id/{name}")
 	public String getPokeId(@PathVariable String name) {
-		String res = service.getData(name);
+		String res = pokeservice.getData(name);
 		JSONObject jsonObject = new JSONObject(res);
 		String str = "{\"id\": "+ jsonObject.optInt("id") +"}";
 		return str;
@@ -79,7 +78,7 @@ public class pokeController {
 	
 	@GetMapping("name/{name}")
 	public String getPokeName(@PathVariable String name) {
-		String res = service.getData(name);
+		String res = pokeservice.getData(name);
 		JSONObject jsonObject = new JSONObject(res);
 		JSONArray array = jsonObject.optJSONArray("forms");
 		String str = "{\"name\": "+ array.optJSONObject(0).optString("name") +"}";
@@ -88,10 +87,10 @@ public class pokeController {
 	
 	@GetMapping("location-area-encounters/{name}")
 	public String getPokeLocationAreaEncounters(@PathVariable String name) {
-		String res = service.getData(name);
+		String res = pokeservice.getData(name);
 		JSONObject jsonObject = new JSONObject(res);
 		String uri = jsonObject.optString("location_area_encounters");
-		String resTwo = service.getFromURL(uri);
+		String resTwo = pokeservice.getFromURL(uri);
 		return resTwo;
 	}
 }
