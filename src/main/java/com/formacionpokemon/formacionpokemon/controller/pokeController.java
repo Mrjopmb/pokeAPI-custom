@@ -77,7 +77,7 @@ public class pokeController {
 		return str;
 	}
 	
-	@GetMapping("name/{name}")
+	@RequestMapping("/name/{name}")
 	public @ResponseBody JSONObject getPokeName(@PathVariable String name) {
 		String res = pokeservice.getData(name);
 		JSONObject jsonObject = new JSONObject(res);
