@@ -8,6 +8,7 @@ import org.json.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -17,7 +18,7 @@ public class pokeController {
 	private pokeService service;
 	
 	@GetMapping("/")
-	public String getAllData() {
+	public @ResponseBody String getAllData() {
 		return service.getData("zapdos");
 	}
 	
