@@ -25,7 +25,7 @@ public class pokeController {
 	
 	@GetMapping("data/{name}")
 	public @ResponseBody String getPokeData(@PathVariable String name) {
-		
+		System.out.println("Si entro!!!!!!!");
 		return pokeservice.getData(name).toString();
 	}
 	
