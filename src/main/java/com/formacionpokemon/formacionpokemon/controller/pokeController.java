@@ -20,7 +20,7 @@ public class pokeController {
 	private pokeService pokeservice;
 	
 	@GetMapping("/")
-	public @ResponseBody String getAllData() {
+	public String getAllData() {
 		return "Hola Mundo!";
 	}
 	
