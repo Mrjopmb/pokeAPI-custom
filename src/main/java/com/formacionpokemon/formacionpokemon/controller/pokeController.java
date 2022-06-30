@@ -19,24 +19,11 @@ import graphql.GraphQL;
 
 @RestController
 public class pokeController {
+	
 	@Autowired
-	private GraphQL graphQL;
-
+	private pokeService service;
 	
 	@GetMapping("/")
-	public ResponseEntity<Object> data(@RequestBody String query) {
-		ExecutionResult execute = graphQL.execute(query);
-        return new ResponseEntity<>(execute, HttpStatus.OK);
-	}
-	
-	
-	
-	
-	
-	
-	//private pokeService service;
-	
-	/*@GetMapping("/")
 	public String getAllData() {
 		return service.getData("zapdos");
 	}
@@ -110,5 +97,5 @@ public class pokeController {
 		String uri = jsonObject.optString("location_area_encounters");
 		String resTwo = service.getFromURL(uri);
 		return resTwo;
-	}*/
+	}
 }
