@@ -21,13 +21,9 @@ import graphql.GraphQL;
 public class pokeController {
 	@Autowired
 	private GraphQL graphQL;
+
 	
 	@GetMapping("/")
-	public String getHello() {
-		return "Hola Mundo!";
-	}
-	
-	@GetMapping("/data")
 	public ResponseEntity<Object> data(@RequestBody String query) {
 		ExecutionResult execute = graphQL.execute(query);
         return new ResponseEntity<>(execute, HttpStatus.OK);
