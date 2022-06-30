@@ -20,5 +20,7 @@ public class pokeService {
 		String result = restTemplate.getForObject(uri, String.class);
 		return result;
 	}
+	
+	
 
 }

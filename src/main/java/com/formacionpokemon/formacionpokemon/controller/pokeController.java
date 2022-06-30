@@ -6,17 +6,37 @@ import java.util.List;
 import org.json.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import graphql.ExecutionResult;
+import graphql.GraphQL;
 
 
 @RestController
 public class pokeController {
 	@Autowired
-	private pokeService service;
+	private GraphQL graphQL;
 	
-	@GetMapping("/")
+	
+	@GetMapping("/data")
+	public ResponseEntity<Object> data(@RequestBody String query) {
+		ExecutionResult execute = graphQL.execute(query);
+        return new ResponseEntity<>(execute, HttpStatus.OK);
+	}
+	
+	
+	
+	
+	
+	
+	//private pokeService service;
+	
+	/*@GetMapping("/")
 	public String getAllData() {
 		return service.getData("zapdos");
 	}
@@ -90,5 +110,5 @@ public class pokeController {
 		String uri = jsonObject.optString("location_area_encounters");
 		String resTwo = service.getFromURL(uri);
 		return resTwo;
-	}
+	}*/
 }
