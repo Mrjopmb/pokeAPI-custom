@@ -22,6 +22,10 @@ public class pokeController {
 	@Autowired
 	private GraphQL graphQL;
 	
+	@GetMapping("/")
+	public String getHello() {
+		return "Hola Mundo!";
+	}
 	
 	@GetMapping("/data")
 	public ResponseEntity<Object> data(@RequestBody String query) {
