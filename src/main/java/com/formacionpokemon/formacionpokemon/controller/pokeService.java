@@ -21,6 +21,14 @@ public class pokeService {
 		return result;
 	}
 	
+	public String testData() {
+		String uri = "https://api.thecatapi.com/v1/images/search";
+		System.out.println(uri);
+		RestTemplate restTemplate = new RestTemplate();
+		String result = restTemplate.getForObject(uri, String.class);
+		return result;
+	}
+	
 	
 
 }
