@@ -25,11 +25,11 @@ public class pokeController {
 	
 	@GetMapping("/")
 	public String getAllData() {
-		//System.out.println(service.testData());
-		System.out.println(service.getData("zapdos"));
+		System.out.println(service.testData());
+		//System.out.println(service.getData("pikachu"));
 		//return "Hola Mundo!";
 		return "<B> PokeAPI API</B> <BR> <BR> "
-				+ "1.- data/{pokemon} <BR>"
+				+ "1.-  data/{pokemon} <BR>"
 				+ "2.-  abilities/{pokemon} <BR>"
 				+ "3.-  base-experience/{pokemon} <BR>"
 				+ "5.-  held-items/{pokemon} <BR>"
