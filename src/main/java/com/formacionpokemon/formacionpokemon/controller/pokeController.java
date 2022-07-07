@@ -26,9 +26,9 @@ public class pokeController {
 	@GetMapping("/")
 	public String getAllData() {
 		System.out.println(service.testData());
+		System.out.println(service.getData("zapdos"));
 		//return service.getData("zapdos");
-		return "Hola Mundo! <BR> "
-				+ "PokeAPI API <BR> <BR> "
+		return "<B> PokeAPI API</B> <BR> <BR> "
 				+ "1.- data/{pokemon} <BR>"
 				+ "2.-  abilities/{pokemon} <BR>"
 				+ "3.-  base-experience/{pokemon} <BR>"
